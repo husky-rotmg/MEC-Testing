@@ -17,29 +17,29 @@
     Write-Host "Updating files..."
     Get-ChildItem -Path $(Get-ChildItem -Path "update\")[0].FullName |
     Foreach-Object {
-        if (@($File, "update.ps1") -contains $_.Name)
+        if ($_.Name -eq $File)
         {
             return
         }
         Write-Host "Updating $_..."
-        Move-Item -Path $_.FullName -Destination $_.Name -Force -ErrorAction Ignore
+        Move-Item -Path $_.FullName -Destination $_.Name -Force -ErrorAction Stop
     }
 
     Write-Host "Removing update archive..."
     Remove-Item -Path "update\" -Force -Recurse -ErrorAction Stop
     
     Add-Type -AssemblyName System.Windows.Forms
-    if ($running_vers -eq [Version]$Latest)
-    {
+    #if ($running_vers -eq [Version]$Latest)
+    #{
         Write-Host "Successfully Updated"
         Add-Type -AssemblyName System.Windows.Forms
         [System.Windows.Forms.MessageBox]::Show("Updated Multiple-Exalt-Clients from version $Current to $Latest.", "Updated Successfully", "OK", "info")
     
-    } else {
-        Write-Host "There was a problem updating the clients..."
-        Write-Host "Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip"
+    #} else {
+    #    Write-Host "There was a problem updating the clients..."
+    #    Write-Host "Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip"
         [System.Windows.Forms.MessageBox]::Show("There was a problem updating the clients... Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip", "Update Failed", "OK", "Error")
-    }
+    #}
 
-    .\RunExaltAM.cmd -File accounts.ini
+    .\RunExaltAM.cmd -File $File
 }
