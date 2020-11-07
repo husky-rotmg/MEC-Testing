@@ -1,7 +1,6 @@
 ﻿Function Update-MEC
 {
     param($Current, $Latest, $File)
-    try {
     Write-Host "Removing old update files..."
     Remove-Item -Path "update.zip" -Force -ErrorAction Ignore
     Remove-Item -Path "update\" -Force -Recurse -ErrorAction Ignore
@@ -48,8 +47,4 @@
         $File = "accounts.ini"
     }
     RunExalt -File $File 
-    } catch {
-        [System.Windows.MessageBox]::Show("There was an issue updating the packages.`n$_", "Update Error", "OK", "Error")
-        Exit 0
-    }
 }
