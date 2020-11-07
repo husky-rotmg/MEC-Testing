@@ -17,20 +17,18 @@
     Write-Host "Updating files..."
     Get-ChildItem -Path $(Get-ChildItem -Path "update\")[0].FullName |
     Foreach-Object {
-        $file = $_
-        if (@("accounts.ini") -contains $file.Name)
+        if (@($File, "update.ps1") -contains $_.Name)
         {
             return
         }
-        Write-Host "Updating $file..."
-        Move-Item -Path $file.FullName -Destination $file.Name -Force -ErrorAction Inquire
+        Write-Host "Updating $_..."
+        Move-Item -Path $_.FullName -Destination $_.Name -Force -ErrorAction Ignore
     }
 
     Write-Host "Removing update archive..."
     Remove-Item -Path "update\" -Force -Recurse -ErrorAction Stop
-
-    . .\RunExaltAsUser.ps1
-
+    
+    Add-Type -AssemblyName System.Windows.Forms
     if ($running_vers -eq [Version]$Latest)
     {
         Write-Host "Successfully Updated"
@@ -42,9 +40,6 @@
         Write-Host "Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip"
         [System.Windows.Forms.MessageBox]::Show("There was a problem updating the clients... Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip", "Update Failed", "OK", "Error")
     }
-    if ($File -eq $null)
-    {
-        $File = "accounts.ini"
-    }
-    RunExalt -File $File 
+
+    .\RunExaltAM.cmd -File accounts.ini
 }

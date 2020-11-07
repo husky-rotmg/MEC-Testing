@@ -1,5 +1,9 @@
 ﻿
+<<<<<<< Updated upstream
 $running_vers = [Version]"1.9"
+=======
+$running_vers = [Version]"1.10"
+>>>>>>> Stashed changes
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName PresentationFramework
@@ -175,8 +179,8 @@ Function RunExaltFromList
     $chkRemember = New-Object System.Windows.Forms.CheckBox
     $chkRemember.Location = New-Object System.Drawing.Point(10, 290)
     $chkRemember.Width = 260
-    if ([string]::IsNullOrWhiteSpace($data.Settings.remember)) {
-        $data.Settings.remember = "true"
+    if ($data.Settings.remember -eq $null) {
+        $data.Settings.remember = "True"
         Save-Settings -Data $data -File $File
     }
 
