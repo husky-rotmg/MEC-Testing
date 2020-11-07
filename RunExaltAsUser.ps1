@@ -1,9 +1,6 @@
-﻿
-<<<<<<< Updated upstream
-$running_vers = [Version]"1.9"
-=======
+﻿$running_vers = [Version]"1.9"
 $running_vers = [Version]"1.10"
->>>>>>> Stashed changes
+
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName PresentationFramework
