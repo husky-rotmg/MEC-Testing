@@ -1,4 +1,4 @@
-﻿$running_vers = [Version]"1.11"
+﻿$running_vers = [Version]"1.12"
 
 
 Add-Type -AssemblyName System.Windows.Forms
