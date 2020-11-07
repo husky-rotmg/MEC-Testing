@@ -6,8 +6,8 @@
     Remove-Item -Path "update.zip" -Force -ErrorAction Ignore
     Remove-Item -Path "update\" -Force -Recurse -ErrorAction Ignore
 
-    Write-Host "Downloading latest version ($Latest) from https://github.com/husky-rotmg/multiple-exalt-clients/archive/v$Latest.zip"
-    Invoke-WebRequest -Uri "https://github.com/husky-rotmg/multiple-exalt-clients/archive/v$Latest.zip" -OutFile "update.zip"
+    Write-Host "Downloading latest version ($Latest) from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip"
+    Invoke-WebRequest -Uri "https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip" -OutFile "update.zip"
     
     Write-Host "Expanding update archive..."
     Expand-Archive -Path "update.zip"
@@ -40,8 +40,8 @@
     
     } else {
         Write-Host "There was a problem updating the clients..."
-        Write-Host "Manually download the update from https://github.com/husky-rotmg/multiple-exalt-clients/archive/v$Latest.zip"
-        [System.Windows.Forms.MessageBox]::Show("There was a problem updating the clients... Manually download the update from https://github.com/husky-rotmg/multiple-exalt-clients/archive/v$Latest.zip", "Update Failed", "OK", "Error")
+        Write-Host "Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip"
+        [System.Windows.Forms.MessageBox]::Show("There was a problem updating the clients... Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip", "Update Failed", "OK", "Error")
     }
     if ($File -eq $null)
     {
