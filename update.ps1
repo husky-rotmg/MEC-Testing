@@ -22,11 +22,11 @@
             return
         }
         Write-Host "Updating $_..."
-        Move-Item -Path $_.FullName -Destination $_.Name -Force -ErrorAction Stop
+        Move-Item -Path $_.FullName -Destination $_.Name -Force -ErrorAction Ignore
     }
 
     Write-Host "Removing update archive..."
-    Remove-Item -Path "update\" -Force -Recurse -ErrorAction Stop
+    Remove-Item -Path "update\" -Force -Recurse -ErrorAction Ignore
     
     Add-Type -AssemblyName System.Windows.Forms
     #if ($running_vers -eq [Version]$Latest)
@@ -38,7 +38,7 @@
     #} else {
     #    Write-Host "There was a problem updating the clients..."
     #    Write-Host "Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip"
-        [System.Windows.Forms.MessageBox]::Show("There was a problem updating the clients... Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip", "Update Failed", "OK", "Error")
+    #   [System.Windows.Forms.MessageBox]::Show("There was a problem updating the clients... Manually download the update from https://github.com/husky-rotmg/mec-testing/archive/v$Latest.zip", "Update Failed", "OK", "Error")
     #}
 
     .\RunExaltAM.cmd -File $File
